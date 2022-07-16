@@ -15,9 +15,9 @@ class Kategori extends Model
     //protected $fillable = [
     //    'nama_kategori'
     //];
-    use Sluggable;
+    // use Sluggable;
 
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [
@@ -26,7 +26,8 @@ class Kategori extends Model
         ];
     }
 
-    public function inventaris(){
-    return $this->hasMany('App\Models\Inventaris');
+    public function inventaris()
+    {
+        return $this->hasMany('App\Models\Inventaris');
     }
 }
