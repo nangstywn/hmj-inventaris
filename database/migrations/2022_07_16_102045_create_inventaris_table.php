@@ -14,11 +14,11 @@ class CreateInventarisTable extends Migration
     public function up()
     {
         Schema::create('inventaris', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('nama');
-            $table->integer('jumlah', 11);
-            $table->string('satuan');
-            $table->string('kondisi');
+            $table->integer('jumlah');
+            $table->string('satuan', 50);
+            $table->string('kondisi', 50);
             $table->integer('id_kategori');
             $table->integer('id_user');
             $table->timestamps();
