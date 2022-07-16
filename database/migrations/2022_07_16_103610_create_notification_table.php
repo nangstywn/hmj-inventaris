@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJurusanTable extends Migration
+class CreateNotificationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreateJurusanTable extends Migration
      */
     public function up()
     {
-        Schema::create('jurusan', function (Blueprint $table) {
-            $table->id();
+        Schema::create('notification', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('id_user');
+            $table->integer('id_detail');
+            $table->timestamp('read_at')->default(null);
+            $table->timestamp('delete_at')->default(null);
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateJurusanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jurusan');
+        Schema::dropIfExists('notification');
     }
 }
