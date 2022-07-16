@@ -21,7 +21,6 @@ class UserTableSeeder extends Seeder
             'level' => 'admin-ti',
             'email' => 'adminTI@gmail.com',
             'password' => bcrypt('admin123'),
-            'api_token' => null
         ]);
         DB::table('users')->insert([
             'name' => 'Admin HMJ SI',
@@ -29,7 +28,6 @@ class UserTableSeeder extends Seeder
             'level' => 'admin-si',
             'email' => 'adminSI@gmail.com',
             'password' => bcrypt('admin123'),
-            'api_token' => null
         ]);
         DB::table('users')->insert([
             'name' => 'Admin HMJ TK',
@@ -37,7 +35,6 @@ class UserTableSeeder extends Seeder
             'level' => 'admin-tk',
             'email' => 'adminTK@gmail.com',
             'password' => bcrypt('admin123'),
-            'api_token' => null
         ]);
         DB::table('users')->insert([
             'name' => 'Admin HMJ MI',
@@ -45,7 +42,6 @@ class UserTableSeeder extends Seeder
             'level' => 'admin-mi',
             'email' => 'adminMI@gmail.com',
             'password' => bcrypt('admin123'),
-            'api_token' => null
         ]);
         DB::table('users')->insert([
             'name' => 'Admin HMJ KA',
@@ -53,7 +49,6 @@ class UserTableSeeder extends Seeder
             'level' => 'admin-ka',
             'email' => 'adminKA@gmail.com',
             'password' => bcrypt('admin123'),
-            'api_token' => null
         ]);
     }
 }
