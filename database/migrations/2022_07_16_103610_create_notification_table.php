@@ -17,8 +17,8 @@ class CreateNotificationTable extends Migration
             $table->increments('id');
             $table->integer('id_user');
             $table->integer('id_detail');
-            $table->timestamp('read_at')->default(null);
-            $table->timestamp('delete_at')->default(null);
+            $table->timestamp('read_at')->nullable();
+            $table->timestamp('delete_at')->nullable();
             $table->timestamps();
         });
     }
