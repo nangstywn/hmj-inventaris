@@ -15,7 +15,7 @@ class Kategori extends Model
     //protected $fillable = [
     //    'nama_kategori'
     //];
-    // use Sluggable;
+    use Sluggable;
 
     public function sluggable(): array
     {
