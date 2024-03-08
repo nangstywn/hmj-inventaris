@@ -69,6 +69,7 @@ Route::get('transaksi/create/{id}', 'PeminjamanDetailController@create')->name('
 
 Route::get('pinjam/{id}', 'PinjamController@pinjam')->name('pinjam.buku');
 Route::post('pinjam/notif', 'PinjamController@readOrder')->name('pinjam.notif');
+Route::get('product', 'ProductController@index')->name('product.index');
 
 
 Route::get('logout', 'Auth\LoginController@logout'); //hapus data

@@ -13,23 +13,19 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Provinsi</th>
-                        <th>Kasus</th>
-                        <th>Sembuh</th>
-                        <th>Meninggal</th>
-                        <th>Dirawat</th>
+                        <th>Nama</th>
+                        <th>Merk</th>
+                        <th>Stock</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php $i = 1; @endphp
-                    @foreach($json->list_data as $data)
+                    @foreach($result as $data)
                     <tr>
                         <td>{{ $i }}</td>
-                        <td>{{ $data->key }}</td>
-                        <td>{{ $data->jumlah_kasus }}</td>
-                        <td>{{ $data->jumlah_sembuh }}</td>
-                        <td>{{ $data->jumlah_meninggal }}</td>
-                        <td>{{ $data->jumlah_dirawat }}</td>
+                        <td>{{ $data->name}}</td>
+                        <td>{{ $data->merk}}</td>
+                        <td>{{ $data->stock}}</td>
                     </tr>
                     @php $i++; @endphp
                     @endforeach

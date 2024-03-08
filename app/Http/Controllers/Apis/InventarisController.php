@@ -20,8 +20,7 @@ class InventarisController extends Controller
 	public function cat(Request $r)
 	{
 		$inventaris = Inventaris::where([
-			"id_kategori" => $r->id_kategori/*,
-        	"id_ruang" => $r->id_ruang*/
+			"id_kategori" => $r->id_kategori
 		])->get();
 
 		if (count($inventaris) > 0) {

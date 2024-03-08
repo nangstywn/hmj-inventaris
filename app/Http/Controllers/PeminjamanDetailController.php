@@ -10,21 +10,24 @@ use App\Models\DetailPinjam;
 use App\Models\Notification;
 use App\Models\User;
 use DB;
-
+use Illuminate\Support\Facades\Auth;
 
 class PeminjamanDetailController extends Controller
 {
     public function create($id)
     {
+        // $inventory = Inventaris::with('kategori:id,nama_kategori')
+        //     ->where('id_user', Auth::user()->id)->get();
+        // dd($inventory);
         $categories = Kategori::all();
-        $inventory = Inventaris::all();
+        // dd($categories);
         $peminjaman = Peminjaman::find($id);
 
         if ($peminjaman->status_pinjam == 'Menunggu') {
             return view('peminjaman.peminjaman-create', [
-                'inventory' => $inventory,
+                // 'inventory' => $inventory,
                 'peminjaman' => $peminjaman,
-                'categories' => $categories
+                'categories' => $categories,
             ]);
         } else {
             return abort(403, 'Cant access dis aksion');
@@ -69,7 +72,9 @@ class PeminjamanDetailController extends Controller
                 $notif->id_detail = $detail->id;
                 if ($notif->save()) {
                     $url = route('pinjam.buku', $detail->id);
-                    $notif->toMultiDevice(User::all(), 'title', 'body', null, $url);
+                    $user = User::where('id', $inventaris->id_user)->first();
+                    $notif->toMultiDevice($user, 'judul', 'TEsss', null, $url);
+                    // $notif->toSingleDevice(User::all(), 'judul', 'TEsss', null, $url);
                 }
                 if ($inventaris->user->level == 'admin-ti') {
                     return redirect()

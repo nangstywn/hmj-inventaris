@@ -8,6 +8,7 @@ use App\Models\Inventaris;
 use App\Models\Peminjaman;
 use App\Models\Kategori;
 use App\Models\DetailPinjam;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use DB;
 
@@ -390,6 +391,7 @@ class PeminjamanController extends Controller
             //$peminjaman->tgl_kembali = 'Menunggu Konfirmasi';
 
             if ($peminjaman->save()) {
+                $this->sendNotification();
                 DB::commit();
                 return redirect()
                     ->back()
@@ -401,6 +403,40 @@ class PeminjamanController extends Controller
                     ->with('error', 'Status peminjaman gagal diubah.');
             }
         }
+    }
+
+    public function sendNotification()
+    {
+        $firebaseToken = User::whereNotNull('api_token')->pluck('api_token')->all();
+
+        $SERVER_API_KEY = 'AAAAAsRYaes:APA91bFIPtFdWk7p-TwrNCQjYeT6RHdmQyXw2woycCeyFg8B6dRtl0Q8sgZwSqOBAbX9hqrLWyWDKhVmKJevmPABrQ921Xu0VzGUK7gYMF0IjjZyFJ-zME2TAr-rQYDPbg7Nl1Yb8RZf';
+
+        $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => "Pengambalian Buku",
+                "body" => "Buku telah dikembalikan",
+                "content_available" => true,
+                "priority" => "high",
+            ]
+        ];
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+        return curl_exec($ch);
     }
     //acc Kembali
     public function kembali($id)

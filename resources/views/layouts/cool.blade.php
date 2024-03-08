@@ -331,10 +331,10 @@
                             </ul>
                             @endif
                         </li>
-                        <!-- <li class="has-sub {{ Route::is('apis.kawal_corona') ? 'active' : '' }}" id="">
-                            <a href="{{route('apis.kawal_corona')}}"><i class="fas fa-tachometer-alt"></i>Api
-                                Corona</a>
-                        </li> -->
+                        <li class="has-sub {{ Route::is('product.index') ? 'active' : '' }}" id="">
+                            <a href="{{route('product.index')}}"><i class="fas fa-tachometer-alt"></i>Api
+                                Product</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -537,8 +537,6 @@
         });
 
         $('.noti__item').on('click ', function() {
-            //alert('Kok gabisa');
-            //$('.show-order').toggleClass('show-dropdown')
             $.ajax({
                 url: "{{ route('pinjam.notif') }}",
                 type: 'POST',

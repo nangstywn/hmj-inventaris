@@ -24,7 +24,7 @@ class User extends Authenticatable
         'level',
         'email',
         'password',
-        'device_token'
+        'api_token'
     ];
 
     /**
@@ -59,15 +59,18 @@ class User extends Authenticatable
      * Check one role
      * @param string $role
      */
-    public function peminjaman(){
-   // disini kita katakan bahwa setiap user akan memiliki banyak post
-   // keterangan: itu PostModel sesuaikan dengan nama MODEL POST yang agan gunakan
-    return $this->hasMany('App\Models\Peminjaman');
+    public function peminjaman()
+    {
+        // disini kita katakan bahwa setiap user akan memiliki banyak post
+        // keterangan: itu PostModel sesuaikan dengan nama MODEL POST yang agan gunakan
+        return $this->hasMany('App\Models\Peminjaman');
     }
-    public function notification(){
-    return $this->hasMany('App\Models\Notification');
+    public function notification()
+    {
+        return $this->hasMany('App\Models\Notification');
     }
-    public function inventaris(){
-    return $this->hasMany('App\Models\Inventaris');
+    public function inventaris()
+    {
+        return $this->hasMany('App\Models\Inventaris');
     }
 }

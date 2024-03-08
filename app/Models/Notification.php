@@ -20,7 +20,7 @@ class Notification extends Model
 
     protected $dates = ['delete_at', 'created_at'];
 
-    public function scopeToSingleDevice($query, $token = null, $title = null, $body = null, $icon, $click_action)
+    public function scopeToSingleDevice($token = null, $title = null, $body = null, $icon, $click_action)
     {
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60 * 20);
@@ -63,7 +63,7 @@ class Notification extends Model
         $notification = $notificationBuilder->build();
         $data = $dataBuilder->build();
         // You must change it to get your tokens
-        $tokens = $model->pluck('device_token')->toArray();
+        $tokens = $model->pluck('api_token')->toArray();
         $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);
         $downstreamResponse->numberSuccess();
         $downstreamResponse->numberFailure();
